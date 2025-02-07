@@ -14,7 +14,7 @@ $$e = \sum_{k=0}^{\infty} \frac{1}{k!}$$
 
 Define a random variable $\( \xi \)$ as the minimum number of uniform random variables $\( r_i \sim U(0,1) \)$ required such that their sum exceeds 1:
 
-$$\xi = \min \left\{ n \mid \sum_{i=1}^{n} r_i > 1 \right\}$$
+$$\xi = \min \{ n \mid \sum_{i=1}^{n} r_i > 1 \}$$
 
 We seek to determine $\( E[\xi] \)$, the expected value of $\( \xi \)$, and prove that $\( E[\xi] = e \)$.
 
