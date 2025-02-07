@@ -1,18 +1,31 @@
-# Import necessary modules
-# Set parameters (number of trials, output file path)
-# Open a log file to store results
+import random
+import os
 
-# Define a function to perform one simulation iteration:
-#   - Generate random numbers between 0 and 1
-#   - Sum them until the sum is at least 1
-#   - Count how many numbers were needed
-#   - Return the count
+OUTPUT_FILE = "outputs/logs/simulation_log.csv"
+NUM_TRIALS = 100000  # Adjust for desired accuracy
 
-# Define a function to run multiple simulations:
-#   - Loop for the given number of trials
-#   - Call the single simulation function
-#   - Write each count to the log file
-#   - Also store cumulative averages to observe the convergence
+def single_trial():
+    """Performs one trial of the e approximation method."""
+    total = 0
+    count = 0
+    while total < 1:
+        total += random.random()
+        count += 1
+    return count
 
-# Execute the function
-# Close the log file
+def run_simulation():
+    """Runs multiple trials and logs results."""
+    os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
+    
+    with open(OUTPUT_FILE, "w") as f:
+        f.write("Trial,Count,Cumulative_Avg\n")
+        cumulative_sum = 0
+
+        for i in range(1, NUM_TRIALS + 1):
+            count = single_trial()
+            cumulative_sum += count
+            avg_so_far = cumulative_sum / i
+            f.write(f"{i},{count},{avg_so_far}\n")
+
+if __name__ == "__main__":
+    run_simulation()
